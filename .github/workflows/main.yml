@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: echo pre-release. just here for debugging
-        run: echo "runs first. is prelease? $is_prerelease"
+        run: echo "ref: ${{ github.ref }}. is prelease? $is_prerelease"
 
       - name: echo prerelease
         run: echo "prerelease ${{ github.ref }}. prerelease is $is_prerelease"

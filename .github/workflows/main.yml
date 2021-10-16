@@ -1,0 +1,25 @@
+name: Build and deploy release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+env:
+  is_prerelease: ${{ contains(github.ref, '-') || contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
+
+jobs:
+  testVariables:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: echo pre-release. why this is necessary, i have no idea
+        run: echo "runs first. is prelease? $is_prerelease"
+
+      - name: echo prerelease
+        run: echo "prerelease ${{ github.ref }}. prerelease is $is_prerelease"
+        if: env.is_prerelease == true
+
+      - name: echo release
+        run: echo "release ${{ github.ref }}. prerelease is $is_prerelease"
+        if: env.is_prerelease == false

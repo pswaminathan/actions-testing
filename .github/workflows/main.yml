@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: echo pre-release. why this is necessary, i have no idea
+      - name: echo pre-release. just here for debugging
         run: echo "runs first. is prelease? $is_prerelease"
 
       - name: echo prerelease
@@ -22,4 +22,4 @@ jobs:
 
       - name: echo release
         run: echo "release ${{ github.ref }}. prerelease is $is_prerelease"
-        if: env.is_prerelease == false
+        if: !env.is_prerelease

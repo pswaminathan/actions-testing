@@ -18,7 +18,7 @@ jobs:
 
       - name: echo prerelease
         run: echo "prerelease ${{ github.ref }}. prerelease is $is_prerelease"
-        if: env.is_prerelease == "true"
+        if: env.is_prerelease
 
       - name: echo release
         run: echo "release ${{ github.ref }}. prerelease is $is_prerelease"

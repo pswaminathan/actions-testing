@@ -1,0 +1,25 @@
+name: Echo tag message
+
+on:
+  push:
+    tags:
+      - 'tm-*'
+
+jobs:
+  doTheThing:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: get tag message
+        run: git show -s --pretty='' {{ github.ref_name }} > CHANGELOG
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          body_path: CHANGELOG
+          draft: false
+          prerelease: true
+

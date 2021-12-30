@@ -1,0 +1,14 @@
+name: Echo tag message
+
+on:
+  create:
+    tags:
+      - 'tm-*'
+
+jobs:
+  doTheThing:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: echo webhook
+        run: echo "commit message ${{ github.event.description }}. commits ${{ toJSON(github.event) }}"

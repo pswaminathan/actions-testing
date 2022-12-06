@@ -1,0 +1,23 @@
+name: Called workflow
+
+on:
+  workflow_call:
+    inputs:
+      flavor:
+        description: 'ice cream flavor'
+        required: false
+        default: 'chocolate'
+        type: string
+
+env:
+  good_taste: inputs.flavor == 'chocolate'
+
+jobs:
+  buildArtifact:
+    runs-on: [self-hosted]
+    environment: ${{ inputs.environment }}
+
+    steps:
+      - name: is this good
+        run: |
+          echo "do we have good taste? ${{ env.good_taste }}"

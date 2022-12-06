@@ -6,9 +6,21 @@ on:
       - 'v*'
 
 env:
-  is_prerelease: ${{ contains(github.ref, '-') || contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
+  is_prerelease: ${{ contains(github.ref, 'pre') }}
 
 jobs:
+  test:
+    if: env.is_prerelease == 'false'
+    uses: ./.github/workflows/called.yml
+    with:
+      flavor: vanilla
+
+  test2:
+    if: env.is_prerelease == 'true'
+    uses: ./.github/workflows/called.yml
+    with:
+      flavor: rockyroad
+
   testVariables:
     runs-on: ubuntu-latest
 

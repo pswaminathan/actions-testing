@@ -10,16 +10,16 @@ env:
 
 jobs:
   test:
-    if: env.is_prerelease == 'false'
     uses: ./.github/workflows/called.yml
     with:
       flavor: vanilla
+    if: env.is_prerelease == 'false'
 
   test2:
-    if: env.is_prerelease == 'true'
     uses: ./.github/workflows/called.yml
     with:
       flavor: rockyroad
+    if: env.is_prerelease == 'true'
 
   testVariables:
     runs-on: ubuntu-latest

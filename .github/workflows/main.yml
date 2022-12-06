@@ -10,13 +10,13 @@ env:
 
 jobs:
   test:
-    if: env.is_prerelease == 'false'
+    if: ${{ env.is_prerelease == 'false' }}
     uses: ./.github/workflows/called.yml
     with:
       flavor: vanilla
 
   test2:
-    if: env.is_prerelease == 'true'
+    if: ${{ env.is_prerelease == 'true' }}
     uses: ./.github/workflows/called.yml
     with:
       flavor: rockyroad

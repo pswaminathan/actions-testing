@@ -10,13 +10,13 @@ env:
 
 jobs:
   test:
-    if: env.is_prerelease == 'false'
+    if: contains(github.ref, 'pre')
     uses: ./.github/workflows/called.yml
     with:
       flavor: vanilla
 
   test2:
-    if: env.is_prerelease == 'true'
+    if: ${{ !contains(github.ref, 'pre' )}}
     uses: ./.github/workflows/called.yml
     with:
       flavor: rockyroad

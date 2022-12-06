@@ -14,7 +14,7 @@ env:
 
 jobs:
   buildArtifact:
-    runs-on: [self-hosted]
+    runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
 
     steps:

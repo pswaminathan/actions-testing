@@ -14,12 +14,14 @@ jobs:
     uses: ./.github/workflows/called.yml
     with:
       flavor: vanilla
+      environment: test
 
   test2:
     if: contains(github.ref, 'real')
     uses: ./.github/workflows/called.yml
     with:
       flavor: rockyroad
+      environment: test
 
   testVariables:
     runs-on: ubuntu-latest

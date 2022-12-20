@@ -33,7 +33,6 @@ jobs:
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
-        if: env.create_gh_release
         with:
           name: ${{ github.ref_name }}
           tag_name: ${{ github.ref }}

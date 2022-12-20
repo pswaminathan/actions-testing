@@ -8,6 +8,10 @@ on:
         required: false
         default: 'chocolate'
         type: string
+      environment:
+        description: 'test or prod'
+        required: true
+        type: string
 
 env:
   good_taste: inputs.flavor == 'chocolate'
@@ -21,3 +25,18 @@ jobs:
       - name: is this good
         run: |
           echo "do we have good taste? ${{ env.good_taste }}"
+
+      - name: store secret in file
+        run: |
+          echo "${{ secrets.MYVAR }}" > FILE
+          cat FILE
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        if: env.create_gh_release
+        with:
+          name: ${{ github.ref_name }}
+          tag_name: ${{ github.ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          draft: false
+          prerelease: ${{ inputs.flavor == 'vanilla' }}

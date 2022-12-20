@@ -38,4 +38,4 @@ jobs:
           tag_name: ${{ github.ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
           draft: false
-          prerelease: ${{ inputs.flavor == 'vanilla' }}
+          prerelease: inputs.flavor == 'vanilla'

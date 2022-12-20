@@ -16,7 +16,7 @@ jobs:
       flavor: vanilla
 
   test2:
-    if: env['is_prerelease'] == 'false'
+    if: contains(github.ref, 'real')
     uses: ./.github/workflows/called.yml
     with:
       flavor: rockyroad
@@ -30,8 +30,8 @@ jobs:
 
       - name: echo prerelease
         run: echo "prerelease ${{ github.ref }}. prerelease is $is_prerelease"
-        # if: env.is_prerelease == 'true'
+        if: env.is_prerelease == 'true'
 
       - name: echo release
         run: echo "release ${{ github.ref }}. prerelease is $is_prerelease"
-        # if: env.is_prerelease == 'false'
+        if: env.is_prerelease == 'false'
